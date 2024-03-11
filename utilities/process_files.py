@@ -32,8 +32,8 @@ def get_sql_content(table_name, connector):
         sql = f"SELECT * from {table_name} ORDER BY query_name"
         
         cursor.execute(sql)
-
         return cursor.fetchall()
+    
     except mysql.connector.Error as err:
         print(f"Error: {err}")
         return None
