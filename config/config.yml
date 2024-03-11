@@ -1,0 +1,5 @@
+USERNAME : root
+PASSWORD : pass123
+DATABASE : test
+SERVER  : localhost
+TABLE : SQLScripts
