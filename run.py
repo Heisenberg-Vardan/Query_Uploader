@@ -18,9 +18,15 @@ else:
 
 queryset = read_directory(directory_path)
 
+print(queryset)
+
 table_name = get_database_config(config_file_path).get('TABLE')
 
 data = get_sql_content(table_name, cnx)
+table_queries =[]
+for query in data:
+    if query[0] not in table_queries:
+        table_queries.append(query[0])
 
 for queries in queryset:
-    process_data(queries['name'], queries['version'], queries['content'], table_name, data,  cnx)
+    process_data(queries['name'], queries['version'], queries['content'], table_name, table_queries, data,  cnx)
