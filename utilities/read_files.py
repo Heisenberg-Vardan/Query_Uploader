@@ -15,9 +15,9 @@ def read_directory(directory_path):
     for filename in os.listdir(directory_path):
         filepath = os.path.join(directory_path, filename)
         if os.path.isfile(filepath):
-            print(filename)
-            name, version = filename.rsplit('_')
-
+            name, version = filename.rsplit('_', 1)
+            version = version.rsplit('.', 1)[0]
+            
             with open(filepath, 'r') as file:
                 content = file.read()
 

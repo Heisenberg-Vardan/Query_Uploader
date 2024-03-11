@@ -18,8 +18,6 @@ else:
 
 queryset = read_directory(directory_path)
 
-print(queryset)
-
 table_name = get_database_config(config_file_path).get('TABLE')
 
 data = get_sql_content(table_name, cnx)

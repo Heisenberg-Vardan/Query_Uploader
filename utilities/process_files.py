@@ -2,23 +2,25 @@ import mysql.connector
 import re
 
 
-def process_data(name, version, sql_content, table_name,table_queries,  data, connector):
-    if name not in table_queries and table_queries.len()>0:
+def process_data(name, version, sql_content, table_name, table_queries, data, connector):
+    if name not in table_queries:
         insert_sql_content(name, version, sql_content, table_name, connector)
         print(f'New query {name} added successfully')
-
-    else :
+    else:
         for row in data:
-            print(row[0],row[1],name, version)
             if name == row[0] and version == row[1] and sql_content == row[2]:
                 print(f'Query: {name} already exists')
+                break
             elif name == row[0] and version == row[1] and sql_content != row[2]:
                 delete_sql_content(name, version, table_name, connector)
                 insert_sql_content(name, version, sql_content, table_name, connector)
                 print(f'Current version for {name} updated successfully')
+                break
             elif name == row[0] and version != row[1] and sql_content != row[2]:
                 insert_sql_content(name, version, sql_content, table_name, connector)
                 print(f'New version for {name} added successfully')
+                break
+
         
 
 
